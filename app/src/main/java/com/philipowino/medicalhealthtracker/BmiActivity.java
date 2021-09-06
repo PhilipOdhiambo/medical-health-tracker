@@ -50,6 +50,12 @@ public class BmiActivity extends AppCompatActivity implements View.OnClickListen
                 } else {
                     message = "BMI of " + bmi.toString() + "? : Confirm Your Measurements";
                 }
+                // Create intent
+                Intent intent = new Intent(BmiActivity.this,BmiResultActivity.class);
+                intent.putExtra("height", height.getText().toString());
+                intent.putExtra("weight", weight.getText().toString());
+                intent.putExtra("bmi", bmi);
+                startActivity(intent);
 
 
             } catch (Exception exception) {

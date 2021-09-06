@@ -38,23 +38,12 @@ public class BmiActivity extends AppCompatActivity implements View.OnClickListen
                 Double heightDouble = Double.parseDouble(height.getText().toString());
                 Double weightDouble = Double.parseDouble(weight.getText().toString());
                 Double bmi =  weightDouble/Math.pow(heightDouble,2);
-                String message;
-                if (bmi < 18.5 ) {
-                    message = "BMI of " + bmi.toString() + " : Under Weight (see a doctor)";
-                } else if (bmi >= 18.5 && bmi <= 24.9 ) {
-                    message = "BMI of " + bmi.toString() + " : Healthy Weight (Maintain Your Lifestyle)";
-                } else if (bmi >= 25 && bmi <= 29.9 ) {
-                    message = "BMI of " + bmi.toString() + " : Overweight (Check Your Lifestyle)";
-                } else if (bmi >= 30 && bmi <= 39.9 ) {
-                    message = "BMI of " + bmi.toString() + " : Obese (See a doctor)";
-                } else {
-                    message = "BMI of " + bmi.toString() + "? : Confirm Your Measurements";
-                }
+
                 // Create intent
                 Intent intent = new Intent(BmiActivity.this,BmiResultActivity.class);
                 intent.putExtra("height", height.getText().toString());
                 intent.putExtra("weight", weight.getText().toString());
-                intent.putExtra("bmi", bmi);
+                intent.putExtra("bmi", bmi.toString());
                 startActivity(intent);
 
 

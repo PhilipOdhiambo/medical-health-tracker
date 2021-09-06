@@ -11,10 +11,22 @@
         android:theme="@style/Theme.MedicalHealthTracker">
         <activity
             android:name=".EddActivity"
-            android:exported="true" />
+            android:exported="true">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value=".MainActivity">
+            </meta-data>
+        </activity>
+
         <activity
             android:name=".BmiActivity"
-            android:exported="true" />
+            android:exported="true">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value=".MainActivity">
+            </meta-data>
+        </activity>
+
         <activity
             android:name=".MainActivity"
             android:exported="true">

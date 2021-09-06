@@ -16,7 +16,7 @@
         android:id="@+id/appBmi"
         style="@style/CategoryStyle"
         android:background="@color/category_bmi"
-        android:text="Body Mass IndeX (BMI)"
+        android:text="Body Mass Index (BMI)"
 
        />
 

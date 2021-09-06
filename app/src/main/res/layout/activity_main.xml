@@ -1,36 +1,32 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
+    android:orientation="vertical"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/tan_background"
     tools:context=".MainActivity">
 
     <TextView
         android:id="@+id/appTitle"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentTop="true"
-        android:textSize="25sp"
-        android:layout_marginLeft="30dp"
-        android:paddingTop="50dp"
+        style="@style/titleStyle"
         android:textColor="@color/teal_200"
         android:text="What Do you want to track?" />
-    <Button
+    <TextView
         android:id="@+id/appBmi"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/appTitle"
-        android:layout_marginLeft="35dp"
-        android:text="BMI (Body Mass Index)"/>
+        style="@style/CategoryStyle"
+        android:background="@color/category_bmi"
+        android:text="Body Mass IndeX (BMI)"
 
-    <Button
+       />
+
+    <TextView
         android:id="@+id/appEDD"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/appBmi"
-        android:layout_marginLeft="35dp"
-        android:text="EDD (Expected Date of Deivery)"/>
+        style="@style/CategoryStyle"
+        android:background="@color/category_edd"
+        android:text="Expected Date of Delivery (EDD)"
+
+      />
 
 
-</RelativeLayout>
+</LinearLayout>

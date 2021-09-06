@@ -20,7 +20,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:hint="Enter weight"
-            android:inputType="number"
+            android:inputType="numberDecimal"
             />
     </LinearLayout>
 
@@ -38,7 +38,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:hint="Enter height"
-            android:inputType="number"
+            android:inputType="numberDecimal"
             />
     </LinearLayout>
 

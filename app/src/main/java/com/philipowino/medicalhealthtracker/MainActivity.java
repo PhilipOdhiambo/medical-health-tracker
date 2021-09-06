@@ -35,5 +35,11 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             startActivity(intent);
         }
 
+        if (view == mEDD) {
+            // Switch to EDD activity
+            Intent intent = new Intent(MainActivity.this,EddActivity.class);
+            startActivity(intent);
+        }
+
     }
 }

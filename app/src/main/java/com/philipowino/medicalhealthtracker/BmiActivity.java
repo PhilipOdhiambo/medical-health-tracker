@@ -39,12 +39,14 @@ public class BmiActivity extends AppCompatActivity implements View.OnClickListen
                 Double weightDouble = Double.parseDouble(weight.getText().toString());
                 Double bmi =  weightDouble/Math.pow(heightDouble,2);
 
+
                 // Create intent
                 Intent intent = new Intent(BmiActivity.this,BmiResultActivity.class);
                 intent.putExtra("height", height.getText().toString());
                 intent.putExtra("weight", weight.getText().toString());
-                intent.putExtra("bmi", bmi.toString());
+                intent.putExtra("bmi", String.format("%.2f",bmi));
                 startActivity(intent);
+
 
 
             } catch (Exception exception) {

@@ -37,7 +37,7 @@ public class BmiResultActivity extends AppCompatActivity implements View.OnClick
 
         // Create conditional messages
         String message;
-        if (bmi < 18.5 ) {
+        if (bmi < 18.5 && bmi >= 10.5 ) {
             message = "BMI of " + bmi.toString() + " - Under Weight (see a doctor)";
         } else if (bmi >= 18.5 && bmi <= 24.9 ) {
             message = "BMI of " + bmi.toString() + " - Healthy Weight (Maintain Your Lifestyle)";
@@ -50,7 +50,7 @@ public class BmiResultActivity extends AppCompatActivity implements View.OnClick
         }
 
         // Send result to view
-        String result = String.format("Parameters: Weight %s kg, height %s m;\nResult: %s",weight,height,message);
+        String result = String.format("Weight %s kg, height %s m:\n%s",weight,height,message);
         bmiTextView.setText(result);
     }
 

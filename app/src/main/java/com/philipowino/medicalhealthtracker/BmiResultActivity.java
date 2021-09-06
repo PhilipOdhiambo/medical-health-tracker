@@ -46,7 +46,7 @@ public class BmiResultActivity extends AppCompatActivity implements View.OnClick
         } else if (bmi >= 30 && bmi <= 39.9 ) {
             message = "BMI of " + bmi.toString() + " - Obese (See a doctor)";
         } else {
-            message = "BMI of " + bmi.toString() + "? - Confirm Your Measurements";
+            message = "BMI of " + bmi.toString() + " ? \nConfirm Your Measurements";
         }
 
         // Send result to view

@@ -16,6 +16,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
     @BindView(R.id.appBmi) TextView mBMI;
     @BindView(R.id.appEDD) TextView mEDD;
+    @BindView(R.id.adverseEventTextView) TextView mAdverseEventTextView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -26,6 +27,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         ButterKnife.bind(this);
         mBMI.setOnClickListener(this);
         mEDD.setOnClickListener(this);
+        mAdverseEventTextView.setOnClickListener(this);
     }
 
     @Override
@@ -40,6 +42,11 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         if (view == mEDD) {
             // Switch to EDD activity
             Intent intent = new Intent(MainActivity.this,EddActivity.class);
+            startActivity(intent);
+        }
+
+        if (view == mAdverseEventTextView) {
+            Intent intent = new Intent(MainActivity.this, AdverseEventActivity.class);
             startActivity(intent);
         }
 

@@ -23,7 +23,7 @@ public class AdverseEventClient {
                         @Override
                         public Response intercept(Chain chain) throws IOException {
                             Request newRequest  = chain.request().newBuilder()
-                                    .addHeader("Authorization", ADVERSE_EVENT_API_KEY)
+                                    .addHeader("Authorization","Basic " +  ADVERSE_EVENT_API_KEY)
                                     .build();
                             return chain.proceed(newRequest);
                         }

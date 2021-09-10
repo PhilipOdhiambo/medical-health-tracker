@@ -1,32 +1,36 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
-    android:orientation="vertical"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/tan_background"
+    android:orientation="vertical"
     tools:context=".ui.MainActivity">
 
     <TextView
         android:id="@+id/appTitle"
         style="@style/titleStyle"
-        android:textColor="@color/teal_200"
-        android:text="What Do you want to track?" />
+        android:text="What Do you want to track?"
+        android:textColor="@color/teal_200" />
+
     <TextView
         android:id="@+id/appBmi"
         style="@style/CategoryStyle"
-        android:background="@color/category_bmi"
-        android:text="Body Mass Index (BMI)"
-
-       />
+        android:backgroundTint="@color/category_bmi"
+        android:text="Body Mass Index (BMI)" />
 
     <TextView
         android:id="@+id/appEDD"
         style="@style/CategoryStyle"
-        android:background="@color/category_edd"
-        android:text="Expected Date of Delivery (EDD)"
+        android:backgroundTint="@color/category_edd"
+        android:text="Expected Date of Delivery (EDD)" />
 
-      />
+    <TextView
+        android:id="@+id/btnAdverseEvent"
+        style="@style/CategoryStyle"
+        android:backgroundTint="@color/cardview_dark_background"
+
+        android:text="Drug Adverse Reactions" />
 
 
 </LinearLayout>

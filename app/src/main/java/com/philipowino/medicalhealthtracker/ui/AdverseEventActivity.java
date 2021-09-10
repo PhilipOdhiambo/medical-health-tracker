@@ -26,18 +26,19 @@ public class AdverseEventActivity extends AppCompatActivity {
         setContentView(R.layout.activity_adverse_event);
 
        // https://api.fda.gov/drug/event.json?search=receivedate:[20040101+TO+20081231]&limit=10
-        String search = "receivedate:[20040101+TO+20081231]";
-        String limit = "limit=10";
+        //String search = "occurcountry:ke";
+        String limit = "5";
 
         // Making api request
         AdverseEventApi client = AdverseEventClient.getClient();
-        Call<DrugAdverseEvent> call = client.getAdverseEvents(search,limit);
+        Call<DrugAdverseEvent> call = client.getAdverseEvents(limit);
         call.enqueue(new Callback<DrugAdverseEvent>() {
             @Override
             public void onResponse(Call<DrugAdverseEvent> call, Response<DrugAdverseEvent> response) {
-                Log.i(TAG, Integer.toString(response.code()));
                 if (response.isSuccessful()) {
                    List<Result> results = response.body().getResults();
+                    Log.i(TAG, Integer.toString(results.size()));
+
 
                 }
             }

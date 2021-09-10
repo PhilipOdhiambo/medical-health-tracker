@@ -43,4 +43,8 @@ dependencies {
 
     // Robolectric Dependency
     testImplementation 'org.robolectric:robolectric:4.4'
+    //Gson
+    implementation 'com.google.code.gson:gson:2.8.8'
+
+
 }

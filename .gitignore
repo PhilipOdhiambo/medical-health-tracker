@@ -1,10 +1,21 @@
+
+# Extensions
 *.iml
-.gradle
+
+# Files
 local.properties
-.idea
-.DS_Store
-build
-/captures
 .externalNativeBuild
 .cxx
-local.properties
+.DS_Store
+
+# Folders
+.gradle
+build
+.idea
+
+# Unknown
+/captures
+
+
+
+

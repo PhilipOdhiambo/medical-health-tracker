@@ -1,4 +1,4 @@
-package com.philipowino.medicalhealthtracker;
+package com.philipowino.medicalhealthtracker.ui;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -8,6 +8,8 @@ import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
+
+import com.philipowino.medicalhealthtracker.R;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;

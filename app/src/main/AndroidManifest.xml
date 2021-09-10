@@ -12,24 +12,24 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.MedicalHealthTracker">
         <activity
-            android:name=".BmiResultActivity"
+            android:name=".ui.BmiResultActivity"
             android:exported="true" />
         <activity
-            android:name=".EddActivity"
+            android:name=".ui.EddActivity"
             android:exported="true">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
-                android:value=".MainActivity"></meta-data>
+                android:value=".ui.MainActivity"></meta-data>
         </activity>
         <activity
-            android:name=".BmiActivity"
+            android:name=".ui.BmiActivity"
             android:exported="true">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
-                android:value=".MainActivity"></meta-data>
+                android:value=".ui.MainActivity"></meta-data>
         </activity>
         <activity
-            android:name=".MainActivity"
+            android:name=".ui.MainActivity"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

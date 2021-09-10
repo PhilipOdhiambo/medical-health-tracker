@@ -5,7 +5,7 @@
     android:layout_height="match_parent"
     android:layout_marginLeft="20dp"
     android:layout_marginRight="10dp"
-    tools:context=".BmiActivity">
+    tools:context=".ui.BmiActivity">
 
     <LinearLayout
         android:id="@+id/weightLayout"

@@ -9,6 +9,7 @@ import retrofit2.http.Query;
 public interface AdverseEventApi {
     @GET("event.json")
     Call<DrugAdverseEvent> getAdverseEvents(
+            @Query("search") String search,
             @Query("limit") String limit
     );
 }

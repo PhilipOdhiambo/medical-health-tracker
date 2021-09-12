@@ -31,6 +31,14 @@ public class ResultItem {
         this.count = count;
     }
 
+    public int getImageSource() {
+        return imageSource;
+    }
+
+    public void setImageSource(int imageSource) {
+        this.imageSource = imageSource;
+    }
+
     @NonNull
     @Override
     public String toString() {

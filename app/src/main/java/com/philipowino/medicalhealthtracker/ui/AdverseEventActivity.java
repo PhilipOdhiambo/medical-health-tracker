@@ -2,6 +2,7 @@ package com.philipowino.medicalhealthtracker.ui;
 
 import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.recyclerview.widget.RecyclerView;
 
 import android.os.Build;
 import android.os.Bundle;
@@ -28,7 +29,12 @@ import retrofit2.Callback;
 import retrofit2.Response;
 
 public class AdverseEventActivity extends AppCompatActivity {
-    private ArrayList<String> mDrugs = new ArrayList();
+    private ArrayList mDrugs = new ArrayList();
+    private RecyclerView mRecyclerView;
+    private RecyclerView.Adapter mAdapter;
+    private RecyclerView.LayoutManager mLayoutManager;
+
+
 
     @BindView(R.id.resultTextView) TextView mResultTextView;
 
@@ -95,7 +101,7 @@ public class AdverseEventActivity extends AppCompatActivity {
                     for(int i = 0; i < fr.length; i++){
                         if(fr[i] != visited) {
                             mResultTextView.append("\n" + mDrugs.get(i) + "    |    " + fr[i]);
-                            ResultItem drugFreq = new ResultItem(mDrugs.get(i),fr[i], R.drawable.ic_baseline_sick_24);
+                            ResultItem drugFreq = new ResultItem(mDrugs.get(i).toString(),fr[i], R.drawable.ic_baseline_sick_24);
                             drugsFrequency.add(drugFreq);
                             Collections.sort(drugsFrequency, new Comparator<ResultItem>() {
                                 @Override
@@ -114,6 +120,9 @@ public class AdverseEventActivity extends AppCompatActivity {
                     }
 
                 }
+
+                // Initialize my Recycler View
+
             }
 
             @Override

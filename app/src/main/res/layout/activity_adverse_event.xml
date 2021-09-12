@@ -11,5 +11,9 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="Results"/>
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/viewResult"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"/>
 
 </LinearLayout>

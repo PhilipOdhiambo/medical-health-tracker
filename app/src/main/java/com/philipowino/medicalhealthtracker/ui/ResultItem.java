@@ -1,16 +1,18 @@
-package com.philipowino.medicalhealthtracker.models;
+package com.philipowino.medicalhealthtracker.ui;
 
 import androidx.annotation.NonNull;
 
-public class DrugEventFrequency {
+public class ResultItem {
     private String name;
     private int count;
-    private static int allCount;
+    private int imageSource;
 
-    public DrugEventFrequency(String name, int count) {
+    public ResultItem(String name, int count, int imageSource) {
         super();
         this.name = name;
         this.count = count;
+        this.imageSource = imageSource;
+
     }
 
     public String getName() {

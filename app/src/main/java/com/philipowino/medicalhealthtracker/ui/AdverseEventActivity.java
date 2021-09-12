@@ -11,7 +11,6 @@ import android.widget.TextView;
 import com.philipowino.medicalhealthtracker.R;
 import com.philipowino.medicalhealthtracker.models.Drug;
 import com.philipowino.medicalhealthtracker.models.DrugAdverseEvent;
-import com.philipowino.medicalhealthtracker.models.DrugEventFrequency;
 import com.philipowino.medicalhealthtracker.models.Result;
 import com.philipowino.medicalhealthtracker.network.AdverseEventApi;
 import com.philipowino.medicalhealthtracker.network.AdverseEventClient;
@@ -92,22 +91,22 @@ public class AdverseEventActivity extends AppCompatActivity {
 
 
                     //Displays the frequency of each element present in array
-                    List<DrugEventFrequency> drugsFrequncy = new ArrayList<>();
+                    ArrayList<ResultItem> drugsFrequency = new ArrayList();
                     for(int i = 0; i < fr.length; i++){
                         if(fr[i] != visited) {
                             mResultTextView.append("\n" + mDrugs.get(i) + "    |    " + fr[i]);
-                            DrugEventFrequency drugFreq = new DrugEventFrequency(mDrugs.get(i),fr[i]);
-                            drugsFrequncy.add(drugFreq);
-                            Collections.sort(drugsFrequncy, new Comparator<DrugEventFrequency>() {
+                            ResultItem drugFreq = new ResultItem(mDrugs.get(i),fr[i], R.drawable.ic_baseline_sick_24);
+                            drugsFrequency.add(drugFreq);
+                            Collections.sort(drugsFrequency, new Comparator<ResultItem>() {
                                 @Override
-                                public int compare(DrugEventFrequency t, DrugEventFrequency t1) {
+                                public int compare(ResultItem t, ResultItem t1) {
                                     return Integer.valueOf(t1.getCount()).compareTo(t.getCount());
                                 }
                             });
                         }
                     }
                     mResultTextView.append("\n---------------------\n");
-                    for (DrugEventFrequency drug:drugsFrequncy) {
+                    for (ResultItem drug:drugsFrequency) {
                         mResultTextView.append(drug.getName());
                         mResultTextView.append("   |   ");
                         mResultTextView.append(String.valueOf(drug.getCount()));

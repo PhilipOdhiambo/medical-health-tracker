@@ -12,6 +12,8 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.philipowino.medicalhealthtracker.R;
 
 import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Comparator;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -24,20 +26,28 @@ public class ResultAdapter extends RecyclerView.Adapter<ResultAdapter.ResultView
 
         public ImageView mImageView;
         public TextView mDrugTextView;
-        public TextView mTextDrugReactionsTextView;
-        public TextView mNumDrugReactionsTextView;
+        public TextView mReactionsTextView;
+        public TextView mReactionNumbersTextView;
+
 
         public ResultViewHolder(@NonNull View itemView) {
             super(itemView);
             //ButterKnife.bind(itemView);
             mImageView = itemView.findViewById(R.id.imageView);
             mDrugTextView = itemView.findViewById(R.id.drugTextView);
-            mTextDrugReactionsTextView = itemView.findViewById(R.id.txtDrugReactionsTextView);
-            mNumDrugReactionsTextView = itemView.findViewById(R.id.numDrugReaactionsTextView);
+            mReactionsTextView = itemView.findViewById(R.id.txtDrugReactionsTextView);
+            mReactionNumbersTextView = itemView.findViewById(R.id.numDrugReaactionsTextView);
         }
     }
 
     public ResultAdapter(ArrayList<ResultItem> resultList) {
+
+        Collections.sort(resultList, new Comparator<ResultItem>() {
+            @Override
+            public int compare(ResultItem t2, ResultItem t1) {
+                return Integer.valueOf(t1.getCount()).compareTo(t2.getCount());
+            }
+        });
         mResultList = resultList;
     }
 
@@ -53,11 +63,11 @@ public class ResultAdapter extends RecyclerView.Adapter<ResultAdapter.ResultView
     @Override
     public void onBindViewHolder(@NonNull ResultViewHolder holder, int position) {
        ResultItem currentItem = mResultList.get(position);
-//        holder.mImageView.setImageResource(currentItem.getImageSource());
-//        holder.mDrugTextView.setText(currentItem.getName());
-       holder.mDrugTextView.setText(String.valueOf(currentItem.getCount()));
 
-        holder.mTextDrugReactionsTextView.setText(currentItem.getName());
+        holder.mImageView.setImageResource(currentItem.getImageSource());
+        holder.mDrugTextView.setText(currentItem.getName());
+       holder.mReactionNumbersTextView.setText(String.valueOf(currentItem.getCount()));
+
 
     }
 

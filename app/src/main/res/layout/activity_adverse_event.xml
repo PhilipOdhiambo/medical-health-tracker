@@ -10,7 +10,10 @@
         android:id="@+id/resultTextView"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Results"/>
+        android:text="Results"
+        android:background="@color/design_default_color_primary_dark"
+        android:textColor="@color/white"
+        android:textSize="24sp"/>
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/resultRecycleView"
         android:layout_width="match_parent"

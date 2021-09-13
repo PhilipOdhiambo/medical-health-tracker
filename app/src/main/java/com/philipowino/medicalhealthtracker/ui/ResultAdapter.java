@@ -22,14 +22,18 @@ public class ResultAdapter extends RecyclerView.Adapter<ResultAdapter.ResultView
 
     public static class ResultViewHolder extends RecyclerView.ViewHolder {
 
-        @BindView(R.id.imageView) ImageView mImageView;
-        @BindView(R.id.drugTextView) TextView mDrugTextView;
-        @BindView(R.id.txtDrugReactionsTextView) TextView mTextDrugReactionsTextView;
-        @BindView(R.id.numDrugReaactionsTextView) TextView mNumDrugReactionsTextView;
+        public ImageView mImageView;
+        public TextView mDrugTextView;
+        public TextView mTextDrugReactionsTextView;
+        public TextView mNumDrugReactionsTextView;
 
         public ResultViewHolder(@NonNull View itemView) {
             super(itemView);
-            ButterKnife.bind(itemView);
+            //ButterKnife.bind(itemView);
+            mImageView = itemView.findViewById(R.id.imageView);
+            mDrugTextView = itemView.findViewById(R.id.drugTextView);
+            mTextDrugReactionsTextView = itemView.findViewById(R.id.txtDrugReactionsTextView);
+            mNumDrugReactionsTextView = itemView.findViewById(R.id.numDrugReaactionsTextView);
         }
     }
 
@@ -48,10 +52,12 @@ public class ResultAdapter extends RecyclerView.Adapter<ResultAdapter.ResultView
 
     @Override
     public void onBindViewHolder(@NonNull ResultViewHolder holder, int position) {
-        ResultItem currentItem = mResultList.get(position);
-        holder.mImageView.setImageResource(currentItem.getImageSource());
-        holder.mDrugTextView.setText(currentItem.getName());
-        holder.mDrugTextView.setText(currentItem.getCount());
+       ResultItem currentItem = mResultList.get(position);
+//        holder.mImageView.setImageResource(currentItem.getImageSource());
+//        holder.mDrugTextView.setText(currentItem.getName());
+       holder.mDrugTextView.setText(String.valueOf(currentItem.getCount()));
+
+        holder.mTextDrugReactionsTextView.setText(currentItem.getName());
 
     }
 

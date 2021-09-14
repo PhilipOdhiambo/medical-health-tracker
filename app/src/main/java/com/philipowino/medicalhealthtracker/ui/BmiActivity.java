@@ -4,20 +4,14 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
-import android.widget.Button;
-import android.widget.EditText;
+
 import android.widget.Toast;
 
-import com.google.android.material.button.MaterialButton;
-import com.google.android.material.textfield.TextInputEditText;
-import com.google.android.material.textfield.TextInputLayout;
-import com.philipowino.medicalhealthtracker.R;
+
 import com.philipowino.medicalhealthtracker.databinding.ActivityBmiBinding;
 
-import butterknife.BindView;
-import butterknife.ButterKnife;
+
 
 public class BmiActivity extends AppCompatActivity implements View.OnClickListener {
 
@@ -35,14 +29,11 @@ public class BmiActivity extends AppCompatActivity implements View.OnClickListen
 
         // Add click listener
         binding.calculateButton.setOnClickListener(this);
-
-
     }
 
     @Override
     public void onClick(View view) {
         if (view == binding.calculateButton) {
-            Log.d("receive", binding.heightTextInputEditText.getText().toString());
             try {
                 Double heightDouble = Double.parseDouble(binding.heightTextInputEditText.getText().toString());
                 Double weightDouble = Double.parseDouble(binding.weightEditText.getText().toString());

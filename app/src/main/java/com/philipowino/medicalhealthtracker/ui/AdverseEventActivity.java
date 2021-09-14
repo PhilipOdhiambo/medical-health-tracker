@@ -8,9 +8,12 @@ import androidx.recyclerview.widget.RecyclerView;
 import android.os.Build;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.View;
 import android.widget.TextView;
 
+import com.google.android.material.textview.MaterialTextView;
 import com.philipowino.medicalhealthtracker.R;
+import com.philipowino.medicalhealthtracker.databinding.ActivityAdverseEventBinding;
 import com.philipowino.medicalhealthtracker.models.Drug;
 import com.philipowino.medicalhealthtracker.models.DrugAdverseEvent;
 import com.philipowino.medicalhealthtracker.models.Result;
@@ -36,19 +39,22 @@ public class AdverseEventActivity extends AppCompatActivity {
     private RecyclerView.Adapter mAdapter;
     private RecyclerView.LayoutManager mLayoutManager;
 
-    @BindView(R.id.resultTextView) TextView mResultTextView;
+
+    private ActivityAdverseEventBinding binding;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_adverse_event);
+        binding = ActivityAdverseEventBinding.inflate(getLayoutInflater());
+        View view = binding.getRoot();
+        setContentView(view);
 
-        //Bind View
-        ButterKnife.bind(this);
+        // Hide recycleView while data is loading
+        binding.resultRecycleView.setVisibility(View.GONE);
 
         // Making api request
-        String limit = "6";
-        String endpoint ="event.json?search=receivedate:[2004-01-01+TO+2008-12-31]&limit=" + limit;
+        String limit = "500";
+        String endpoint ="event.json?search=receivedate:[2021-04-01+TO+2021-09-13]&limit=" + limit;
         AdverseEventApi client = AdverseEventClient.getClient();
         Call<DrugAdverseEvent> call = client.getAdverseEvents(endpoint);
 
@@ -57,7 +63,6 @@ public class AdverseEventActivity extends AppCompatActivity {
             @Override
             public void onResponse(Call<DrugAdverseEvent> call, Response<DrugAdverseEvent> response) {
                 if (response.isSuccessful()) {
-
 
                    List<Result> results = response.body().getResults();
                     HashMap<String, Integer> keyVal = new HashMap<>();
@@ -68,7 +73,6 @@ public class AdverseEventActivity extends AppCompatActivity {
                             drugArrayList.add(drug.getMedicinalproduct());
                         }
                     }
-                    Log.d("work", drugArrayList.toString());
 
                     HashSet<String> hset = new HashSet<>(drugArrayList);
                     for (String s: hset) {
@@ -81,9 +85,6 @@ public class AdverseEventActivity extends AppCompatActivity {
                     //Displays the frequency of each element present in array
                     ArrayList<ResultItem> drugsFrequency = new ArrayList();
 
-                    mResultTextView.append("\n---------------------\n");
-
-
                 }
 
                 // Initialize my Recycler View
@@ -91,9 +92,13 @@ public class AdverseEventActivity extends AppCompatActivity {
                 mRecyclerView.setHasFixedSize(true);
                 mLayoutManager = new LinearLayoutManager(AdverseEventActivity.this);
                 mAdapter =  new ResultAdapter(mResultItems);
-
                 mRecyclerView.setLayoutManager(mLayoutManager);
+
+                // Set the recycleView visible and hide progress bar
+                binding.resultRecycleView.setVisibility(View.VISIBLE);
+                binding.progressBar.setVisibility(View.GONE);
                 mRecyclerView.setAdapter(mAdapter);
+
             }
 
             @Override

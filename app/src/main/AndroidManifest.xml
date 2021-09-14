@@ -21,7 +21,12 @@
 
         <activity
             android:name=".ui.BmiResultActivity"
-            android:exported="true" />
+            android:exported="true" >
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value=".ui.BmiActivity" />
+        </activity>
+
         <activity
             android:name=".ui.EddActivity"
             android:exported="true">

@@ -20,17 +20,19 @@
         android:text="Body Mass Index (BMI)" />
 
     <TextView
-        android:id="@+id/appEDD"
-        style="@style/CategoryStyle"
-        android:backgroundTint="@color/category_edd"
-        android:text="Expected Date of Delivery (EDD)" />
-
-    <TextView
         android:id="@+id/adverseEventTextView"
         style="@style/CategoryStyle"
         android:backgroundTint="@color/cardview_dark_background"
 
         android:text="Drug Adverse Reactions" />
+
+    <TextView
+        android:id="@+id/appEDD"
+        style="@style/CategoryStyle"
+        android:backgroundTint="@color/category_edd"
+        android:text="Expected Date of Delivery (EDD)" />
+
+
 
 
 </LinearLayout>

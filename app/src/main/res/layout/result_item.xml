@@ -1,55 +1,69 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:layout_marginBottom="3dp"
-    android:padding="2dp"
+    android:layout_margin="3dp"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     app:cardCornerRadius="5dp">
 
-    <RelativeLayout
+    <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_margin="4dp"
-        android:paddingHorizontal="5dp">
+        android:layout_height="wrap_content"
+        android:layout_margin="4dp">
+
         <ImageView
             android:id="@+id/imageView"
             android:layout_width="50dp"
             android:layout_height="50dp"
+            android:layout_margin="10dp"
             android:padding="2dp"
-            android:layout_marginRight="20dp"
-            android:src="@drawable/ic_baseline_sick_24"/>
+            android:src="@drawable/ic_baseline_sick_24"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
         <TextView
             android:id="@+id/drugTextView"
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="20dp"
+            android:layout_toEndOf="@id/imageView"
             android:text="Drug name"
-            android:textSize="20sp"
-            android:textStyle="bold"
             android:textColor="@color/design_default_color_primary"
-            android:layout_alignParentTop="true"
-            android:layout_toEndOf="@id/imageView"/>
+            android:textSize="16sp"
+            android:textStyle="bold"
+            app:layout_constraintTop_toBottomOf="@+id/imageView"
+            app:layout_constraintStart_toEndOf="@+id/imageView" />
 
         <TextView
             android:id="@+id/txtDrugReactionsTextView"
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_toEndOf="@id/imageView"
             android:layout_below="@id/drugTextView"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="12dp"
+            android:layout_toEndOf="@id/imageView"
+            android:text="No. of Adverse Reactions:"
             android:textSize="15sp"
-            android:layout_marginStart="8dp"
-            android:text="No. of Adverse Reactions:" />
+            app:layout_constraintStart_toEndOf="@+id/imageView"
+            app:layout_constraintTop_toBottomOf="@+id/drugTextView" />
+
         <TextView
             android:id="@+id/numDrugReaactionsTextView"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_toEndOf="@id/txtDrugReactionsTextView"
+            android:layout_width="160dp"
+            android:layout_height="33dp"
             android:layout_below="@id/drugTextView"
-            android:layout_marginStart="5dp"
+            android:layout_marginTop="4dp"
+            android:layout_toEndOf="@id/txtDrugReactionsTextView"
             android:text="50"
-            android:textColor="#ff0000"/>
+            android:textColor="#ff0000"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toStartOf="@+id/txtDrugReactionsTextView"
+            app:layout_constraintTop_toBottomOf="@+id/txtDrugReactionsTextView" />
 
 
-    </RelativeLayout>
+    </androidx.constraintlayout.widget.ConstraintLayout>
 
 </androidx.cardview.widget.CardView>

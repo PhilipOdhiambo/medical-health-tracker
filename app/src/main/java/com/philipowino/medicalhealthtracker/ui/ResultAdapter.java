@@ -10,17 +10,19 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.philipowino.medicalhealthtracker.R;
+import com.philipowino.medicalhealthtracker.models.count.Result;
 
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Comparator;
+import java.util.List;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
 
 public class ResultAdapter extends RecyclerView.Adapter<ResultAdapter.ResultViewHolder> {
 
-    private ArrayList<ResultItem> mResultList;
+    private List<Result> mResultList;
 
     public static class ResultViewHolder extends RecyclerView.ViewHolder {
 
@@ -40,11 +42,11 @@ public class ResultAdapter extends RecyclerView.Adapter<ResultAdapter.ResultView
         }
     }
 
-    public ResultAdapter(ArrayList<ResultItem> resultList) {
+    public ResultAdapter(List<Result> resultList) {
 
-        Collections.sort(resultList, new Comparator<ResultItem>() {
+        Collections.sort(resultList, new Comparator<Result>() {
             @Override
-            public int compare(ResultItem t2, ResultItem t1) {
+            public int compare(Result t2, Result t1) {
                 return Integer.valueOf(t1.getCount()).compareTo(t2.getCount());
             }
         });
@@ -62,10 +64,10 @@ public class ResultAdapter extends RecyclerView.Adapter<ResultAdapter.ResultView
 
     @Override
     public void onBindViewHolder(@NonNull ResultViewHolder holder, int position) {
-       ResultItem currentItem = mResultList.get(position);
+       Result currentItem = mResultList.get(position);
 
-        holder.mImageView.setImageResource(currentItem.getImageSource());
-        holder.mDrugTextView.setText(currentItem.getName());
+        //holder.mImageView.setImageResource(currentItem.getImageSource());
+        holder.mDrugTextView.setText(currentItem.getDrugName());
        holder.mReactionNumbersTextView.setText(String.valueOf(currentItem.getCount()));
 
 

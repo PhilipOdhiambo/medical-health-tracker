@@ -7,6 +7,9 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.philipowino.medicalhealthtracker.R;
@@ -69,6 +72,11 @@ public class ResultAdapter extends RecyclerView.Adapter<ResultAdapter.ResultView
         //holder.mImageView.setImageResource(currentItem.getImageSource());
         holder.mDrugTextView.setText(currentItem.getDrugName());
        holder.mReactionNumbersTextView.setText(String.valueOf(currentItem.getCount()));
+       holder.itemView.setOnClickListener(new View.OnClickListener() {
+           @Override
+           public void onClick(View view) {
+           }
+       });
 
 
     }

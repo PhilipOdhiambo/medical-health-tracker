@@ -7,13 +7,10 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import android.os.Build;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
-import android.widget.TextView;
 
-import com.google.android.material.textview.MaterialTextView;
 import com.philipowino.medicalhealthtracker.R;
-import com.philipowino.medicalhealthtracker.databinding.ActivityAdverseEventBinding;
+import com.philipowino.medicalhealthtracker.databinding.ActivityAdverseEventListBinding;
 import com.philipowino.medicalhealthtracker.models.Drug;
 import com.philipowino.medicalhealthtracker.models.DrugAdverseEvent;
 import com.philipowino.medicalhealthtracker.models.Result;
@@ -22,30 +19,27 @@ import com.philipowino.medicalhealthtracker.network.AdverseEventClient;
 
 import java.util.ArrayList;
 import java.util.Collections;
-import java.util.Comparator;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.List;
 
-import butterknife.BindView;
-import butterknife.ButterKnife;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
-public class AdverseEventActivity extends AppCompatActivity {
+public class AdverseEventListActivity extends AppCompatActivity {
     private ArrayList<ResultItem> mResultItems = new ArrayList();
     private RecyclerView mRecyclerView;
     private RecyclerView.Adapter mAdapter;
     private RecyclerView.LayoutManager mLayoutManager;
 
 
-    private ActivityAdverseEventBinding binding;
+    private ActivityAdverseEventListBinding binding;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        binding = ActivityAdverseEventBinding.inflate(getLayoutInflater());
+        binding = ActivityAdverseEventListBinding.inflate(getLayoutInflater());
         View view = binding.getRoot();
         setContentView(view);
 
@@ -53,7 +47,7 @@ public class AdverseEventActivity extends AppCompatActivity {
         binding.resultRecycleView.setVisibility(View.GONE);
 
         // Making api request
-        String limit = "500";
+        String limit = "20";
         String endpoint ="event.json?search=receivedate:[2021-04-01+TO+2021-09-13]&limit=" + limit;
         AdverseEventApi client = AdverseEventClient.getClient();
         Call<DrugAdverseEvent> call = client.getAdverseEvents(endpoint);
@@ -90,7 +84,7 @@ public class AdverseEventActivity extends AppCompatActivity {
                 // Initialize my Recycler View
                 mRecyclerView = findViewById(R.id.resultRecycleView);
                 mRecyclerView.setHasFixedSize(true);
-                mLayoutManager = new LinearLayoutManager(AdverseEventActivity.this);
+                mLayoutManager = new LinearLayoutManager(AdverseEventListActivity.this);
                 mAdapter =  new ResultAdapter(mResultItems);
                 mRecyclerView.setLayoutManager(mLayoutManager);
 

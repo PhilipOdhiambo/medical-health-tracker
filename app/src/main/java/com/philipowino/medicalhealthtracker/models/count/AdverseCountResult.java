@@ -2,10 +2,9 @@
 package com.philipowino.medicalhealthtracker.models.count;
 
 import java.util.List;
+
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
-import com.philipowino.medicalhealthtracker.models.Meta;
-import com.philipowino.medicalhealthtracker.models.Result;
 
 public class AdverseCountResult {
 

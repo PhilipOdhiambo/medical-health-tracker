@@ -1,7 +1,6 @@
 
 package com.philipowino.medicalhealthtracker.models.count;
 
-
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
@@ -9,7 +8,7 @@ public class Result {
 
     @SerializedName("term")
     @Expose
-    private String term;
+    private String drugName;
     @SerializedName("count")
     @Expose
     private Integer count;
@@ -24,20 +23,20 @@ public class Result {
     /**
      * 
      * @param count
-     * @param term
+     * @param drugName
      */
-    public Result(String term, Integer count) {
+    public Result(String drugName, Integer count) {
         super();
-        this.term = term;
+        this.drugName = drugName;
         this.count = count;
     }
 
-    public String getTerm() {
-        return term;
+    public String getDrugName() {
+        return drugName;
     }
 
-    public void setTerm(String term) {
-        this.term = term;
+    public void setDrugName(String drugName) {
+        this.drugName = drugName;
     }
 
     public Integer getCount() {

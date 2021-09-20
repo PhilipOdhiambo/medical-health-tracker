@@ -2,6 +2,8 @@ package com.philipowino.medicalhealthtracker.ui;
 
 import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
+import android.preference.PreferenceManager;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -16,6 +18,10 @@ import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.google.firebase.FirebaseApp;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.philipowino.medicalhealthtracker.Constants;
 import com.philipowino.medicalhealthtracker.R;
 import com.philipowino.medicalhealthtracker.models.count.Result;
 
@@ -34,6 +40,8 @@ public class ResultAdapter extends RecyclerView.Adapter<ResultAdapter.ResultView
     private List<Result> mResultList;
     private Context mContext;
 
+
+
     public ResultAdapter(Context context, List<Result> resultList) {
         Collections.sort(resultList, new Comparator<Result>() {
             @Override
@@ -43,6 +51,7 @@ public class ResultAdapter extends RecyclerView.Adapter<ResultAdapter.ResultView
         });
         mResultList = resultList;
         mContext = context;
+
     }
 
     public static class ResultViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
@@ -52,7 +61,8 @@ public class ResultAdapter extends RecyclerView.Adapter<ResultAdapter.ResultView
         public TextView mReactionsTextView;
         public TextView mReactionNumbersTextView;
         public Button  mSaveBtn;
-
+        private SharedPreferences mSharedPreferences;
+        private SharedPreferences.Editor mEditor;
 
         public ResultViewHolder(@NonNull View itemView) {
             super(itemView);
@@ -62,20 +72,25 @@ public class ResultAdapter extends RecyclerView.Adapter<ResultAdapter.ResultView
             mReactionsTextView = itemView.findViewById(R.id.txtDrugReactionsTextView);
             mReactionNumbersTextView = itemView.findViewById(R.id.numDrugReaactionsTextView);
             mSaveBtn = itemView.findViewById(R.id.saveBtn);
+
             itemView.setOnClickListener(this);
             mSaveBtn.setOnClickListener(this);
+
         }
 
         @Override
         public void onClick(View view) {
-            Button btn = view.findViewById(R.id.saveBtn);
-            if(view == btn) {
-                Toast.makeText(btn.getContext(), "Saved",Toast.LENGTH_SHORT).show();
-                btn.setText("Saved");
-                btn.setAlpha(.5f);
-                btn.setClickable(false);
+
+            DatabaseReference ref = FirebaseDatabase.getInstance().getReference();
+            if (view == mSaveBtn) {
+                Toast.makeText(view.getContext(), mDrugTextView.getText(),Toast.LENGTH_SHORT).show();
+                ref.child("dff").setValue(mDrugTextView.getText().toString());
+                mSaveBtn.setText("Saved");
+                mSaveBtn.setAlpha(.3f);
+                mSaveBtn.setClickable(false);
             }
-//
+
+
         }
     }
 
@@ -85,6 +100,7 @@ public class ResultAdapter extends RecyclerView.Adapter<ResultAdapter.ResultView
     public ResultViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         View v = LayoutInflater.from(parent.getContext()).inflate(R.layout.result_item, parent,false);
         ResultViewHolder rvh = new ResultViewHolder(v);
+
         return  rvh;
     }
 
@@ -95,13 +111,13 @@ public class ResultAdapter extends RecyclerView.Adapter<ResultAdapter.ResultView
         //holder.mImageView.setImageResource(currentItem.getImageSource());
         holder.mDrugTextView.setText(currentItem.getDrugName());
        holder.mReactionNumbersTextView.setText(String.valueOf(currentItem.getCount()));
+
        holder.itemView.setOnClickListener(new View.OnClickListener() {
            @Override
            public void onClick(View view) {
+
            }
        });
-
-
     }
 
     @Override

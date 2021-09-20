@@ -6,10 +6,13 @@ import androidx.fragment.app.FragmentTransaction;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.preference.PreferenceManager;
 import android.util.Log;
 import android.view.View;
 
+import com.google.firebase.FirebaseApp;
 import com.philipowino.medicalhealthtracker.R;
 import com.philipowino.medicalhealthtracker.databinding.ActivityAdverseEventListBinding;
 import com.philipowino.medicalhealthtracker.models.DrugAdverseEvent;
@@ -31,7 +34,6 @@ public class AdverseEventListActivity extends AppCompatActivity {
     private RecyclerView.Adapter mAdapter;
     private RecyclerView.LayoutManager mLayoutManager;
 
-
     private ActivityAdverseEventListBinding binding;
 
     @Override
@@ -40,13 +42,8 @@ public class AdverseEventListActivity extends AppCompatActivity {
         binding = ActivityAdverseEventListBinding.inflate(getLayoutInflater());
         View view = binding.getRoot();
         setContentView(view);
+        FirebaseApp.initializeApp(this);
 
-//        Fragment fragment = MainFragment.newInstance();
-//        FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
-//        transaction.replace(R.id.frame_container, fragment,"main_fragment");
-//        transaction.commit();
-
-        // Hide recycleView while data is loading
         binding.resultRecycleView.setVisibility(View.GONE);
 
         // Making api request
@@ -80,7 +77,7 @@ public class AdverseEventListActivity extends AppCompatActivity {
             }
 
             @Override
-            public void onFailure(Call<AdverseCountResult> call, Throwable t) {
+            public void onFailure(Call<AdverseCountResult> call,Throwable t) {
 
             }
         });

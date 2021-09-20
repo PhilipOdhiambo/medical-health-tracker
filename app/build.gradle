@@ -1,6 +1,7 @@
 plugins {
     id 'com.android.application'
 }
+apply plugin: 'com.google.gms.google-services'
 
 android {
     compileSdk 31
@@ -61,5 +62,16 @@ dependencies {
     // Parceler
     implementation 'org.parceler:parceler-api:1.1.12'
     annotationProcessor 'org.parceler:parceler:1.1.12'
+
+    // Declare the dependency for the Firebase SDK for Google Analytics
+    implementation 'com.google.firebase:firebase-analytics'
+    implementation platform('com.google.firebase:firebase-bom:26.4.0')
+    implementation 'com.google.firebase:firebase-database'
+    // Firebase recycler view setup
+    implementation 'com.google.firebase:firebase-database'
+    implementation 'com.firebaseui:firebase-ui-database:7.1.1'
+    //Firebase user auth
+    implementation 'com.google.firebase:firebase-auth'
+
 }
 

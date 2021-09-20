@@ -41,10 +41,10 @@ public class AdverseEventListActivity extends AppCompatActivity {
         View view = binding.getRoot();
         setContentView(view);
 
-        Fragment fragment = MainFragment.newInstance();
-        FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
-        transaction.replace(R.id.frame_container, fragment,"main_fragment");
-        transaction.commit();
+//        Fragment fragment = MainFragment.newInstance();
+//        FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
+//        transaction.replace(R.id.frame_container, fragment,"main_fragment");
+//        transaction.commit();
 
         // Hide recycleView while data is loading
         binding.resultRecycleView.setVisibility(View.GONE);
@@ -70,7 +70,7 @@ public class AdverseEventListActivity extends AppCompatActivity {
                 mRecyclerView = findViewById(R.id.resultRecycleView);
                 mRecyclerView.setHasFixedSize(true);
                 mLayoutManager = new LinearLayoutManager(AdverseEventListActivity.this);
-                mAdapter =  new ResultAdapter(mResultItems);
+                mAdapter =  new ResultAdapter(getApplicationContext(),mResultItems);
                 mRecyclerView.setLayoutManager(mLayoutManager);
 
                 // Set the recycleView visible and hide progress bar

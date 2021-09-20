@@ -6,6 +6,8 @@ import java.util.List;
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
+import org.parceler.Parcel;
+@Parcel
 public class AdverseCountResult {
 
     @SerializedName("meta")
@@ -19,6 +21,7 @@ public class AdverseCountResult {
      * No args constructor for use in serialization
      * 
      */
+
     public AdverseCountResult() {
     }
 

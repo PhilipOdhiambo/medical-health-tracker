@@ -89,7 +89,7 @@ public class MainFragment extends Fragment {
         recyclerView.setHasFixedSize(true);
         LinearLayoutManager layoutManager = new LinearLayoutManager(getActivity());
         recyclerView.setLayoutManager(layoutManager);
-        ResultAdapter adapter = new ResultAdapter(mResultItems);
+        ResultAdapter adapter = new ResultAdapter(getContext(),mResultItems);
         recyclerView.setAdapter(adapter);
 
         // Initialize my Recycler View

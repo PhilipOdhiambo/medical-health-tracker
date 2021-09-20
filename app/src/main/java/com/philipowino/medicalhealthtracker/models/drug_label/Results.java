@@ -4,6 +4,9 @@ package com.philipowino.medicalhealthtracker.models.drug_label;
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
+import org.parceler.Parcel;
+
+@Parcel
 public class Results {
 
     @SerializedName("skip")

@@ -1,10 +1,14 @@
 package com.philipowino.medicalhealthtracker.ui;
 
+import android.content.Context;
+import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
@@ -14,6 +18,8 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.philipowino.medicalhealthtracker.R;
 import com.philipowino.medicalhealthtracker.models.count.Result;
+
+import org.parceler.Parcels;
 
 import java.util.ArrayList;
 import java.util.Collections;
@@ -26,13 +32,26 @@ import butterknife.ButterKnife;
 public class ResultAdapter extends RecyclerView.Adapter<ResultAdapter.ResultViewHolder> {
 
     private List<Result> mResultList;
+    private Context mContext;
 
-    public static class ResultViewHolder extends RecyclerView.ViewHolder {
+    public ResultAdapter(Context context, List<Result> resultList) {
+        Collections.sort(resultList, new Comparator<Result>() {
+            @Override
+            public int compare(Result t2, Result t1) {
+                return Integer.valueOf(t1.getCount()).compareTo(t2.getCount());
+            }
+        });
+        mResultList = resultList;
+        mContext = context;
+    }
+
+    public static class ResultViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
 
         public ImageView mImageView;
         public TextView mDrugTextView;
         public TextView mReactionsTextView;
         public TextView mReactionNumbersTextView;
+        public Button  mSaveBtn;
 
 
         public ResultViewHolder(@NonNull View itemView) {
@@ -42,18 +61,22 @@ public class ResultAdapter extends RecyclerView.Adapter<ResultAdapter.ResultView
             mDrugTextView = itemView.findViewById(R.id.drugTextView);
             mReactionsTextView = itemView.findViewById(R.id.txtDrugReactionsTextView);
             mReactionNumbersTextView = itemView.findViewById(R.id.numDrugReaactionsTextView);
+            mSaveBtn = itemView.findViewById(R.id.saveBtn);
+            itemView.setOnClickListener(this);
+            mSaveBtn.setOnClickListener(this);
         }
-    }
 
-    public ResultAdapter(List<Result> resultList) {
-
-        Collections.sort(resultList, new Comparator<Result>() {
-            @Override
-            public int compare(Result t2, Result t1) {
-                return Integer.valueOf(t1.getCount()).compareTo(t2.getCount());
+        @Override
+        public void onClick(View view) {
+            Button btn = view.findViewById(R.id.saveBtn);
+            if(view == btn) {
+                Toast.makeText(btn.getContext(), "Saved",Toast.LENGTH_SHORT).show();
+                btn.setText("Saved");
+                btn.setAlpha(.5f);
+                btn.setClickable(false);
             }
-        });
-        mResultList = resultList;
+//
+        }
     }
 
 

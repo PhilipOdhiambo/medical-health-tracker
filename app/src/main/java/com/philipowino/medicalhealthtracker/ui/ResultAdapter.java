@@ -41,7 +41,6 @@ public class ResultAdapter extends RecyclerView.Adapter<ResultAdapter.ResultView
     private Context mContext;
 
 
-
     public ResultAdapter(Context context, List<Result> resultList) {
         Collections.sort(resultList, new Comparator<Result>() {
             @Override
@@ -61,8 +60,9 @@ public class ResultAdapter extends RecyclerView.Adapter<ResultAdapter.ResultView
         public TextView mReactionsTextView;
         public TextView mReactionNumbersTextView;
         public Button  mSaveBtn;
-        private SharedPreferences mSharedPreferences;
-        private SharedPreferences.Editor mEditor;
+        SharedPreferences sp;
+        SharedPreferences.Editor spEditor;
+
 
         public ResultViewHolder(@NonNull View itemView) {
             super(itemView);
@@ -72,9 +72,11 @@ public class ResultAdapter extends RecyclerView.Adapter<ResultAdapter.ResultView
             mReactionsTextView = itemView.findViewById(R.id.txtDrugReactionsTextView);
             mReactionNumbersTextView = itemView.findViewById(R.id.numDrugReaactionsTextView);
             mSaveBtn = itemView.findViewById(R.id.saveBtn);
+             sp = itemView.getContext().getSharedPreferences(Constants.PREFERENCES_LOCATION_KEY,Context.MODE_PRIVATE);
 
             itemView.setOnClickListener(this);
             mSaveBtn.setOnClickListener(this);
+
 
         }
 
@@ -84,7 +86,12 @@ public class ResultAdapter extends RecyclerView.Adapter<ResultAdapter.ResultView
             DatabaseReference ref = FirebaseDatabase.getInstance().getReference();
             if (view == mSaveBtn) {
                 Toast.makeText(view.getContext(), mDrugTextView.getText(),Toast.LENGTH_SHORT).show();
-                ref.child("dff").setValue(mDrugTextView.getText().toString());
+                ref.child(Constants.FIREBASE_CHILD_REACTIONS).push().setValue(mDrugTextView.getText().toString());
+                SharedPreferences.Editor editor = sp.edit();
+                spEditor = sp.edit();
+                Boolean state =  spEditor.putString(Constants.PREFERENCES_LOCATION_KEY,mDrugTextView.getText().toString())
+                        .commit();
+                Toast.makeText(view.getContext(), state.toString(),Toast.LENGTH_SHORT).show();
                 mSaveBtn.setText("Saved");
                 mSaveBtn.setAlpha(.3f);
                 mSaveBtn.setClickable(false);

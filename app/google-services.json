@@ -1,0 +1,47 @@
+{
+  "project_info": {
+    "project_number": "415214755514",
+    "project_id": "health-tracker-57b42",
+    "storage_bucket": "health-tracker-57b42.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:415214755514:android:50c5e51c7b9e3f706eac83",
+        "android_client_info": {
+          "package_name": "com.philipowino.medicalhealthtracker"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "415214755514-pvir6i13gires711bcp3de2snesk97po.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.philipowino.medicalhealthtracker",
+            "certificate_hash": "fd4686c438f2620d07c0a8258724dd51baef9e35"
+          }
+        },
+        {
+          "client_id": "415214755514-hsb6vijt4480m48vq6367ktq77riiv2d.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAxe4gIk3kha2aWPbcGQI6ksNllKeF2bmI"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "415214755514-hsb6vijt4480m48vq6367ktq77riiv2d.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

@@ -76,8 +76,6 @@ public class ResultAdapter extends RecyclerView.Adapter<ResultAdapter.ResultView
 
             itemView.setOnClickListener(this);
             mSaveBtn.setOnClickListener(this);
-
-
         }
 
         @Override
@@ -85,22 +83,19 @@ public class ResultAdapter extends RecyclerView.Adapter<ResultAdapter.ResultView
 
             DatabaseReference ref = FirebaseDatabase.getInstance().getReference();
             if (view == mSaveBtn) {
-                Toast.makeText(view.getContext(), mDrugTextView.getText(),Toast.LENGTH_SHORT).show();
+                Toast.makeText(view.getContext(), "Save to My Meds",Toast.LENGTH_SHORT).show();
                 ref.child(Constants.FIREBASE_CHILD_REACTIONS).push().setValue(mDrugTextView.getText().toString());
-                SharedPreferences.Editor editor = sp.edit();
                 spEditor = sp.edit();
-                Boolean state =  spEditor.putString(Constants.PREFERENCES_LOCATION_KEY,mDrugTextView.getText().toString())
+                spEditor.putString(Constants.PREFERENCES_LOCATION_KEY,mDrugTextView.getText().toString())
                         .commit();
-                Toast.makeText(view.getContext(), state.toString(),Toast.LENGTH_SHORT).show();
                 mSaveBtn.setText("Saved");
                 mSaveBtn.setAlpha(.3f);
                 mSaveBtn.setClickable(false);
+                Intent intent = new Intent(view.getContext(),EddActivity.class);
+                view.getContext().startActivity(intent);
             }
-
-
         }
     }
-
 
     @NonNull
     @Override

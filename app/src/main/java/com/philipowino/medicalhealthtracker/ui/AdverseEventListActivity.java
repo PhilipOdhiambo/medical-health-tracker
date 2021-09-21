@@ -42,7 +42,6 @@ public class AdverseEventListActivity extends AppCompatActivity {
         binding = ActivityAdverseEventListBinding.inflate(getLayoutInflater());
         View view = binding.getRoot();
         setContentView(view);
-        FirebaseApp.initializeApp(this);
 
         binding.resultRecycleView.setVisibility(View.GONE);
 

@@ -47,8 +47,7 @@ public class AdverseEventListActivity extends AppCompatActivity {
         binding.resultRecycleView.setVisibility(View.GONE);
 
         // Making api request
-        String limit = "20";
-        String endpoint ="event.json?search=receivedate:[2021-04-01+TO+2021-09-13]&count=patient.drug.openfda.generic_name.exact";
+        String endpoint ="event.json?search=receivedate:[2021-04-01+TO+2021-09-13]&count=patient.drug.openfda.generic_name.exact&limit=2";
         AdverseEventApi client = AdverseEventClient.getClient();
         AdverseEventApi client1 = AdverseEventClient.getClient();
         Call<DrugAdverseEvent> call = client.getAdverseEvents(endpoint);

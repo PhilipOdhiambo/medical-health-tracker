@@ -30,9 +30,6 @@
         android:id="@+id/appEDD"
         style="@style/CategoryStyle"
         android:backgroundTint="@color/category_edd"
-        android:text="Expected Date of Delivery (EDD)" />
-
-
-
+        android:text="My Medicine (Uses and Warning)" />
 
 </LinearLayout>

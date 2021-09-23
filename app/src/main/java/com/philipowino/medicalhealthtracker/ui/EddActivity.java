@@ -32,7 +32,6 @@ public class EddActivity extends AppCompatActivity {
 
     final String RESPONSE = "Response";
 
-
     private SharedPreferences mSharedPreferences;
     private SharedPreferences.Editor mEditor;
     private String mRecentMed;
@@ -42,7 +41,6 @@ public class EddActivity extends AppCompatActivity {
     @BindView(R.id.resultTitleTv) TextView mResultTitleTv;
     @BindView(R.id.resultTv) TextView mResultTv;
     @BindView(R.id.warningTv) TextView mWarningTv;
-
 
     public Result mDrugLabel;
 

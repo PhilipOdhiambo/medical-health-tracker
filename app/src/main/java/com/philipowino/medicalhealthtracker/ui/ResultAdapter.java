@@ -110,16 +110,9 @@ public class ResultAdapter extends RecyclerView.Adapter<ResultAdapter.ResultView
     public void onBindViewHolder(@NonNull ResultViewHolder holder, int position) {
        Result currentItem = mResultList.get(position);
 
-        //holder.mImageView.setImageResource(currentItem.getImageSource());
         holder.mDrugTextView.setText(currentItem.getDrugName());
        holder.mReactionNumbersTextView.setText(String.valueOf(currentItem.getCount()));
 
-       holder.itemView.setOnClickListener(new View.OnClickListener() {
-           @Override
-           public void onClick(View view) {
-
-           }
-       });
     }
 
     @Override

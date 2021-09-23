@@ -12,6 +12,7 @@ import android.view.View;
 import android.widget.TextView;
 
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 import com.philipowino.medicalhealthtracker.R;
 
 import butterknife.BindView;
@@ -19,9 +20,13 @@ import butterknife.ButterKnife;
 
 public class MainActivity extends AppCompatActivity implements View.OnClickListener {
 
+    private FirebaseAuth mAuth;
+    private FirebaseAuth.AuthStateListener mAuthListener;
+
     @BindView(R.id.appBmi) TextView mBMI;
     @BindView(R.id.appEDD) TextView mEDD;
     @BindView(R.id.adverseEventTextView) TextView mAdverseEventTextView;
+    @BindView(R.id.text_view_drug_detail) TextView mDrugDetail;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -33,6 +38,35 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         mBMI.setOnClickListener(this);
         mEDD.setOnClickListener(this);
         mAdverseEventTextView.setOnClickListener(this);
+        mDrugDetail.setOnClickListener(this);
+
+        mAuth = FirebaseAuth.getInstance();
+        mAuthListener = new FirebaseAuth.AuthStateListener() {
+            @Override
+            public void onAuthStateChanged(@NonNull FirebaseAuth firebaseAuth) {
+                // Display welcome message if the user is authenticated
+                FirebaseUser user = firebaseAuth.getCurrentUser();
+                if (user != null) {
+                    getSupportActionBar().setTitle("Logged in: " + user.getDisplayName());
+                }
+            }
+        };
+    }
+
+
+    @Override
+    protected void onStart() {
+        super.onStart();
+        mAuth.addAuthStateListener(mAuthListener);
+
+    }
+
+    @Override
+    protected void onStop() {
+        super.onStop();
+        if (mAuthListener != null) {
+            mAuth.removeAuthStateListener(mAuthListener);
+        }
     }
 
     @Override
@@ -51,7 +85,12 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         }
 
         if (view == mAdverseEventTextView) {
-            Intent intent = new Intent(MainActivity.this, AdverseEventListActivity.class);
+            Intent intent = new Intent(MainActivity.this, DrugDetailActivity.class);
+            startActivity(intent);
+        }
+
+        if (view == mDrugDetail) {
+            Intent intent = new Intent(MainActivity.this, DrugDetailActivity.class);
             startActivity(intent);
         }
     }

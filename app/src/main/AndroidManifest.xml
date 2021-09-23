@@ -21,11 +21,12 @@
             </intent-filter>
         </activity>
 
+        <activity android:name=".ui.DrugDetailActivity"
+            android:exported="true"/>
+
         <activity
             android:name=".ui.CreateAccountActivity"
-            android:exported="true" >
-
-        </activity>
+            android:exported="true" />
 
         <activity
             android:name=".ui.AdverseEventListActivity"

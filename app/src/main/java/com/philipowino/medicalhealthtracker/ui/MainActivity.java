@@ -85,7 +85,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         }
 
         if (view == mAdverseEventTextView) {
-            Intent intent = new Intent(MainActivity.this, DrugDetailActivity.class);
+            Intent intent = new Intent(MainActivity.this, AdverseEventListActivity.class);
             startActivity(intent);
         }
 

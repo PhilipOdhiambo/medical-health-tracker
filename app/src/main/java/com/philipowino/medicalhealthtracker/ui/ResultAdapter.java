@@ -4,6 +4,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.preference.PreferenceManager;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -24,6 +25,11 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.philipowino.medicalhealthtracker.Constants;
 import com.philipowino.medicalhealthtracker.R;
 import com.philipowino.medicalhealthtracker.models.count.Result;
+import com.philipowino.medicalhealthtracker.models.drug_label.DrugDetail;
+import com.philipowino.medicalhealthtracker.models.drug_label.Openfda;
+import com.philipowino.medicalhealthtracker.models.firebase.Drug;
+import com.philipowino.medicalhealthtracker.network.AdverseEventApi;
+import com.philipowino.medicalhealthtracker.network.AdverseEventClient;
 
 import org.parceler.Parcels;
 
@@ -34,6 +40,9 @@ import java.util.List;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
 
 public class ResultAdapter extends RecyclerView.Adapter<ResultAdapter.ResultViewHolder> {
 
@@ -42,6 +51,7 @@ public class ResultAdapter extends RecyclerView.Adapter<ResultAdapter.ResultView
 
 
     public ResultAdapter(Context context, List<Result> resultList) {
+        // Constructor
         Collections.sort(resultList, new Comparator<Result>() {
             @Override
             public int compare(Result t2, Result t1) {
@@ -50,23 +60,42 @@ public class ResultAdapter extends RecyclerView.Adapter<ResultAdapter.ResultView
         });
         mResultList = resultList;
         mContext = context;
-
     }
 
-    public static class ResultViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
 
-        public ImageView mImageView;
-        public TextView mDrugTextView;
-        public TextView mReactionsTextView;
-        public TextView mReactionNumbersTextView;
-        public Button  mSaveBtn;
+    @Override
+    public int getItemCount() {
+        return mResultList.size();
+    }
+
+    @NonNull
+    @Override
+    public ResultViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
+        View v = LayoutInflater.from(parent.getContext()).inflate(R.layout.result_item, parent,false);
+        return  new ResultViewHolder(v);
+    }
+
+    @Override
+    public void onBindViewHolder(@NonNull ResultViewHolder holder, int position) {
+        Result currentItem = mResultList.get(position);
+        holder.mDrugTextView.setText(currentItem.getDrugName());
+        holder.mReactionNumbersTextView.setText(String.valueOf(currentItem.getCount()));
+    }
+
+     static class ResultViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
+        // Define viewHolder variables
+        private ImageView mImageView;
+        private TextView mDrugTextView;
+        private TextView mReactionsTextView;
+        private TextView mReactionNumbersTextView;
+        private Button  mSaveBtn;
         SharedPreferences sp;
         SharedPreferences.Editor spEditor;
 
-
+         // Constructor
         public ResultViewHolder(@NonNull View itemView) {
             super(itemView);
-            //ButterKnife.bind(itemView);
+            ButterKnife.bind(this,itemView);
             mImageView = itemView.findViewById(R.id.imageView);
             mDrugTextView = itemView.findViewById(R.id.drugTextView);
             mReactionsTextView = itemView.findViewById(R.id.txtDrugReactionsTextView);
@@ -93,30 +122,58 @@ public class ResultAdapter extends RecyclerView.Adapter<ResultAdapter.ResultView
                 mSaveBtn.setClickable(false);
                 Intent intent = new Intent(view.getContext(),EddActivity.class);
                 view.getContext().startActivity(intent);
+
+
+                String endpoint = "https://api.fda.gov/drug/label.json?search=openfda.generic_name:" + mDrugTextView.getText().toString() + ".exact";
+                AdverseEventApi client = AdverseEventClient.getClient();
+                Call<DrugDetail> call = client.getDrugLabel(endpoint);
+                call.enqueue(new Callback<DrugDetail>() {
+                    @Override
+                    public void onResponse(Call<DrugDetail> call, Response<DrugDetail> response) {
+                        Log.d("Response",String.valueOf(response.code()));
+                        if (response.isSuccessful()) {
+//                    mDrugLabel = response.body().getResults().get(0);
+//
+//                    String indication = mDrugLabel.getIndicationsAndUsage().toString();
+//                    Openfda openfda = mDrugLabel.getOpenfda();
+//                    List<String> meds = openfda.getGenericName();
+//                    String meda = meds.get(0);
+//                    String warning =  mDrugLabel.getWarnings().toString();
+//
+//                    mDrugNameTv.setText("Drug Name: " +  meda);
+//                    mResultTv.setText(indication);
+//                    mWarningTv.setText(warning);
+
+                            Drug drug = new Drug(mDrugTextView.getText().toString(),
+                                    response.body().getResults().get(0).getIndicationsAndUsage(),
+                                    response.body().getResults().get(0).getWarnings()
+                            );
+
+                            DatabaseReference ref  = FirebaseDatabase
+                                    .getInstance()
+                                    .getReference()
+                                    .child(Constants.FIREBASE_CHILD_DRUGS);
+                            ref.push().setValue(drug);
+                        }
+                    }
+
+                    @Override
+                    public void onFailure(Call<DrugDetail> call, Throwable t) {
+
+                    }
+                });
             }
         }
+
+
+         public void fetchAndStoreDrug(String generic_name){
+
+         }
     }
 
-    @NonNull
-    @Override
-    public ResultViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        View v = LayoutInflater.from(parent.getContext()).inflate(R.layout.result_item, parent,false);
-        ResultViewHolder rvh = new ResultViewHolder(v);
 
-        return  rvh;
-    }
 
-    @Override
-    public void onBindViewHolder(@NonNull ResultViewHolder holder, int position) {
-       Result currentItem = mResultList.get(position);
 
-        holder.mDrugTextView.setText(currentItem.getDrugName());
-       holder.mReactionNumbersTextView.setText(String.valueOf(currentItem.getCount()));
 
-    }
 
-    @Override
-    public int getItemCount() {
-        return mResultList.size();
-    }
 }

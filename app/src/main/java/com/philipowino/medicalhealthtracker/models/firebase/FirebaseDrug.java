@@ -2,13 +2,16 @@ package com.philipowino.medicalhealthtracker.models.firebase;
 
 import java.util.List;
 
-public class Drug {
+public class FirebaseDrug {
     private String name;
-    private List<String> uses;
-    private List<String> warning;
+    private String uses;
+    private String warning;
     private String pushId;
 
-    public Drug(String name, List<String> uses, List<String> warning) {
+    // Empty constructor
+    FirebaseDrug() {};
+
+    public FirebaseDrug(String name, String uses, String warning) {
         this.name = name;
         this.uses = uses;
         this.warning = warning;
@@ -22,24 +25,24 @@ public class Drug {
         this.name = name;
     }
 
-    public List<String> getUses() {
+    public String getUses() {
         return uses;
     }
+    public String getWarning() {
+        return warning;
+    }
+    public String getPushId() {
+        return pushId;
+    }
 
-    public void setUses(List<String> uses) {
+
+
+    public void setUses(String uses) {
         this.uses = uses;
     }
 
-    public List<String> getWarning() {
-        return warning;
-    }
-
-    public void setWarning(List<String> warning) {
+    public void setWarning(String warning) {
         this.warning = warning;
-    }
-
-    public String getPushId() {
-        return pushId;
     }
 
     public void setPushId(String pushId) {

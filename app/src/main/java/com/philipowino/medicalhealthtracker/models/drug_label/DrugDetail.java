@@ -15,7 +15,7 @@ public class DrugDetail {
     private Meta meta;
     @SerializedName("results")
     @Expose
-    private List<Result> results = null;
+    private List<LabelResult> labelResults = null;
 
     /**
      * No args constructor for use in serialization
@@ -27,12 +27,12 @@ public class DrugDetail {
     /**
      * 
      * @param meta
-     * @param results
+     * @param labelResults
      */
-    public DrugDetail(Meta meta, List<Result> results) {
+    public DrugDetail(Meta meta, List<LabelResult> labelResults) {
         super();
         this.meta = meta;
-        this.results = results;
+        this.labelResults = labelResults;
     }
 
     public Meta getMeta() {
@@ -43,12 +43,12 @@ public class DrugDetail {
         this.meta = meta;
     }
 
-    public List<Result> getResults() {
-        return results;
+    public List<LabelResult> getResults() {
+        return labelResults;
     }
 
-    public void setResults(List<Result> results) {
-        this.results = results;
+    public void setResults(List<LabelResult> labelResults) {
+        this.labelResults = labelResults;
     }
 
 }

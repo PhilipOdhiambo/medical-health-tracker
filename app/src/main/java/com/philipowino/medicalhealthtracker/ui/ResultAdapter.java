@@ -3,7 +3,6 @@ package com.philipowino.medicalhealthtracker.ui;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
-import android.preference.PreferenceManager;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -14,31 +13,28 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.fragment.app.Fragment;
-import androidx.fragment.app.FragmentManager;
+import androidx.annotation.Nullable;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.google.firebase.FirebaseApp;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.philipowino.medicalhealthtracker.Constants;
 import com.philipowino.medicalhealthtracker.R;
 import com.philipowino.medicalhealthtracker.models.count.Result;
 import com.philipowino.medicalhealthtracker.models.drug_label.DrugDetail;
-import com.philipowino.medicalhealthtracker.models.drug_label.Openfda;
-import com.philipowino.medicalhealthtracker.models.firebase.Drug;
+import com.philipowino.medicalhealthtracker.models.drug_label.LabelResult;
+import com.philipowino.medicalhealthtracker.models.firebase.FirebaseDrug;
 import com.philipowino.medicalhealthtracker.network.AdverseEventApi;
 import com.philipowino.medicalhealthtracker.network.AdverseEventClient;
 
-import org.parceler.Parcels;
-
 import java.util.ArrayList;
+import java.util.Collection;
 import java.util.Collections;
 import java.util.Comparator;
+import java.util.Iterator;
 import java.util.List;
+import java.util.ListIterator;
 
-import butterknife.BindView;
 import butterknife.ButterKnife;
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -132,22 +128,26 @@ public class ResultAdapter extends RecyclerView.Adapter<ResultAdapter.ResultView
                     public void onResponse(Call<DrugDetail> call, Response<DrugDetail> response) {
                         Log.d("Response",String.valueOf(response.code()));
                         if (response.isSuccessful()) {
-//                    mDrugLabel = response.body().getResults().get(0);
-//
-//                    String indication = mDrugLabel.getIndicationsAndUsage().toString();
-//                    Openfda openfda = mDrugLabel.getOpenfda();
-//                    List<String> meds = openfda.getGenericName();
-//                    String meda = meds.get(0);
-//                    String warning =  mDrugLabel.getWarnings().toString();
-//
-//                    mDrugNameTv.setText("Drug Name: " +  meda);
-//                    mResultTv.setText(indication);
-//                    mWarningTv.setText(warning);
+                            assert response.body() != null;
+                            LabelResult labelResult = response.body().getResults().get(0);
+                            String labelName = labelResult.getOpenfda().getGenericName().toString();
 
-                            Drug drug = new Drug(mDrugTextView.getText().toString(),
-                                    response.body().getResults().get(0).getIndicationsAndUsage(),
-                                    response.body().getResults().get(0).getWarnings()
-                            );
+                            // Get indications
+                            List<String> indications = new ArrayList<>();
+                            for (int i=0; i < labelResult.getIndicationsAndUsage().size();i++) {
+                                indications.add(labelResult.getIndicationsAndUsage().get(i));
+                            }
+
+                            // Get warnings
+                            List <String> warnings = new ArrayList<>();
+                             for (int i=0; i < labelResult.getWarnings().size();i++) {
+                                 warnings.add(labelResult.getWarnings().get(i));
+                             }
+
+
+
+                            FirebaseDrug drug = new FirebaseDrug(mDrugTextView.getText().toString(),
+                                    indications.toString(),warnings.toString());
 
                             DatabaseReference ref  = FirebaseDatabase
                                     .getInstance()
@@ -165,15 +165,6 @@ public class ResultAdapter extends RecyclerView.Adapter<ResultAdapter.ResultView
             }
         }
 
-
-         public void fetchAndStoreDrug(String generic_name){
-
-         }
     }
-
-
-
-
-
 
 }

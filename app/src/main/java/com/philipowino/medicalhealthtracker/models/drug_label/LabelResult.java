@@ -8,7 +8,7 @@ import com.google.gson.annotations.SerializedName;
 import org.parceler.Parcel;
 
 @Parcel
-public class Result {
+public class LabelResult {
 
     @SerializedName("effective_time")
     @Expose
@@ -69,7 +69,7 @@ public class Result {
      * No args constructor for use in serialization
      * 
      */
-    public Result() {
+    public LabelResult() {
     }
 
     /**
@@ -93,7 +93,7 @@ public class Result {
      * @param dosageAndAdministration
      * @param keepOutOfReachOfChildren
      */
-    public Result(String effectiveTime, List<String> inactiveIngredient, List<String> purpose, List<String> keepOutOfReachOfChildren, List<String> warnings, List<String> questions, List<String> splProductDataElements, Openfda openfda, String version, List<String> dosageAndAdministration, List<String> splUnclassifiedSection, List<String> storageAndHandling, List<String> packageLabelPrincipalDisplayPanel, List<String> indicationsAndUsage, String setId, String id, List<String> activeIngredient, List<String> dosageAndAdministrationTable) {
+    public LabelResult(String effectiveTime, List<String> inactiveIngredient, List<String> purpose, List<String> keepOutOfReachOfChildren, List<String> warnings, List<String> questions, List<String> splProductDataElements, Openfda openfda, String version, List<String> dosageAndAdministration, List<String> splUnclassifiedSection, List<String> storageAndHandling, List<String> packageLabelPrincipalDisplayPanel, List<String> indicationsAndUsage, String setId, String id, List<String> activeIngredient, List<String> dosageAndAdministrationTable) {
         super();
         this.effectiveTime = effectiveTime;
         this.inactiveIngredient = inactiveIngredient;

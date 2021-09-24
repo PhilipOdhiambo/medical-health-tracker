@@ -15,8 +15,8 @@ import android.widget.TextView;
 import com.philipowino.medicalhealthtracker.Constants;
 import com.philipowino.medicalhealthtracker.R;
 import com.philipowino.medicalhealthtracker.models.drug_label.DrugDetail;
+import com.philipowino.medicalhealthtracker.models.drug_label.LabelResult;
 import com.philipowino.medicalhealthtracker.models.drug_label.Openfda;
-import com.philipowino.medicalhealthtracker.models.drug_label.Result;
 import com.philipowino.medicalhealthtracker.network.AdverseEventApi;
 import com.philipowino.medicalhealthtracker.network.AdverseEventClient;
 
@@ -42,7 +42,7 @@ public class EddActivity extends AppCompatActivity {
     @BindView(R.id.resultTv) TextView mResultTv;
     @BindView(R.id.warningTv) TextView mWarningTv;
 
-    public Result mDrugLabel;
+    public LabelResult mDrugLabel;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

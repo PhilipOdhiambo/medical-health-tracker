@@ -1,18 +1,13 @@
 package com.philipowino.medicalhealthtracker.ui;
 
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.fragment.app.Fragment;
-import androidx.fragment.app.FragmentTransaction;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import android.content.SharedPreferences;
 import android.os.Bundle;
-import android.preference.PreferenceManager;
 import android.util.Log;
 import android.view.View;
 
-import com.google.firebase.FirebaseApp;
 import com.philipowino.medicalhealthtracker.R;
 import com.philipowino.medicalhealthtracker.databinding.ActivityAdverseEventListBinding;
 import com.philipowino.medicalhealthtracker.models.DrugAdverseEvent;
@@ -20,6 +15,7 @@ import com.philipowino.medicalhealthtracker.models.count.AdverseCountResult;
 import com.philipowino.medicalhealthtracker.models.count.Result;
 import com.philipowino.medicalhealthtracker.network.AdverseEventApi;
 import com.philipowino.medicalhealthtracker.network.AdverseEventClient;
+import com.philipowino.medicalhealthtracker.ui.adapters.ResultAdapter;
 
 import java.util.ArrayList;
 import java.util.List;

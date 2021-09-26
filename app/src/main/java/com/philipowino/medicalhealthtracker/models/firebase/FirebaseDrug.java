@@ -1,12 +1,14 @@
 package com.philipowino.medicalhealthtracker.models.firebase;
 
-import java.util.List;
+import org.parceler.Parcel;
 
+import java.util.List;
+@Parcel
 public class FirebaseDrug {
-    private String name;
-    private String uses;
-    private String warning;
-    private String pushId;
+    String name;
+    String uses;
+    String warning;
+    String pushId;
 
     // Empty constructor
     FirebaseDrug() {};

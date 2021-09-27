@@ -12,6 +12,7 @@
 This is a handy app for tracking health parameters like Body Mass Idex (BMI), Expected Date of Delivery (EDD), Blood Pressure (BM) and give relevant information.
 
 ## Live Demo
+https://user-images.githubusercontent.com/36165162/134950741-bd4a6c0c-52a5-4c05-a95b-4223b2e0ae8c.mp4
 
 
 
@@ -27,10 +28,6 @@ This is a handy app for tracking health parameters like Body Mass Idex (BMI), Ex
 There are no known bugs. Kindly report to the developer email in case you find any
 
 ## Installation Instruction
-
-https://user-images.githubusercontent.com/36165162/134950741-bd4a6c0c-52a5-4c05-a95b-4223b2e0ae8c.mp4
-
-
 
 To get the app install on your machine follow these steps:
 1. Have minimum of jkd 11 installed on your machine.

@@ -12,7 +12,8 @@
 This is a handy app for tracking health parameters like Body Mass Idex (BMI), Expected Date of Delivery (EDD), Blood Pressure (BM) and give relevant information.
 
 ## Live Demo
-[Check the live Demo](https://user-images.githubusercontent.com/36165162/134946108-fc880136-b908-4b52-b442-610be11ace9c.mp4).
+https://user-images.githubusercontent.com/36165162/134946108-fc880136-b908-4b52-b442-610be11ace9c.mp4
+[Check the live Demo]().
 
 
 

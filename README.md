@@ -13,9 +13,8 @@ This is a handy app for tracking health parameters like Body Mass Idex (BMI), Ex
 
 ## Live Demo
 
-This mobile app will be deployed to google playstore and link updated here once it is hosted.
 
-
+https://user-images.githubusercontent.com/36165162/134952014-eb029d7f-3ad8-489d-9fc0-1cf67da24861.mp4
 
 
 ## Technologies Used

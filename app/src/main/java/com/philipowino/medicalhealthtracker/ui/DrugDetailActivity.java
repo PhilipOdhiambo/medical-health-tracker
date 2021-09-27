@@ -1,7 +1,10 @@
 package com.philipowino.medicalhealthtracker.ui;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.FragmentPagerAdapter;
+import androidx.recyclerview.widget.ItemTouchHelper;
+import androidx.recyclerview.widget.RecyclerView;
 import androidx.viewpager.widget.ViewPager;
 
 import android.os.Bundle;
@@ -34,10 +37,7 @@ public class DrugDetailActivity extends AppCompatActivity {
         drugPagerAdapter = new DrugPagerAdapter(getSupportFragmentManager(), FragmentPagerAdapter.BEHAVIOR_RESUME_ONLY_CURRENT_FRAGMENT,mDrugs);
         mViewPager.setAdapter(drugPagerAdapter);
         mViewPager.setCurrentItem(startingPosition);
-
-
-
-
-
     }
+
+
 }

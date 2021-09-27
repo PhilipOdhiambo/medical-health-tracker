@@ -29,6 +29,7 @@ import com.philipowino.medicalhealthtracker.models.firebase.FirebaseDrug;
 import com.philipowino.medicalhealthtracker.network.AdverseEventApi;
 import com.philipowino.medicalhealthtracker.network.AdverseEventClient;
 import com.philipowino.medicalhealthtracker.ui.DrugDetailActivity;
+import com.philipowino.medicalhealthtracker.util.ItemTouchHelperAdapter;
 
 import org.parceler.Parcels;
 
@@ -43,7 +44,7 @@ import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
-public class ResultAdapter extends RecyclerView.Adapter<ResultAdapter.ResultViewHolder> {
+public class ResultAdapter extends RecyclerView.Adapter<ResultAdapter.ResultViewHolder> implements ItemTouchHelperAdapter {
 
     private List<Result> mResultList;
     List<FirebaseDrug> drugs = new ArrayList<>();
@@ -54,7 +55,7 @@ public class ResultAdapter extends RecyclerView.Adapter<ResultAdapter.ResultView
 
 
 
-    public ResultAdapter(Context context, List<Result> resultList) {
+    public ResultAdapter( List<Result> resultList, Context context) {
         // Constructor
         Collections.sort(resultList, new Comparator<Result>() {
             @Override
@@ -102,7 +103,8 @@ public class ResultAdapter extends RecyclerView.Adapter<ResultAdapter.ResultView
         holder.mReactionNumbersTextView.setText(String.valueOf(currentItem.getCount()));
     }
 
-     public class ResultViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
+
+    public class ResultViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
         // Define viewHolder variables
         private ImageView mImageView;
         private TextView mDrugTextView;
@@ -204,8 +206,21 @@ public class ResultAdapter extends RecyclerView.Adapter<ResultAdapter.ResultView
 
 
             }
+
+
         }
 
+    }
+
+    @Override
+    public boolean onItemMove(int fromPosition, int toPosition) {
+        notifyItemMoved(fromPosition, toPosition);
+        return false;
+    }
+
+    @Override
+    public void onItemDismiss(int position) {
+       // getRef(position).removeValue();
     }
 
 }

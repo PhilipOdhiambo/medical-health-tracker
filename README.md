@@ -13,10 +13,8 @@ This is a handy app for tracking health parameters like Body Mass Idex (BMI), Ex
 
 ## Live Demo
 
-[MIT LICENCE](https://user-images.githubusercontent.com/36165162/134950741-bd4a6c0c-52a5-4c05-a95b-4223b2e0ae8c.mp4)
 
-
-
+https://user-images.githubusercontent.com/36165162/134952014-eb029d7f-3ad8-489d-9fc0-1cf67da24861.mp4
 
 
 ## Technologies Used

@@ -9,7 +9,7 @@
 
 ## Description
 
-This is a handy app for tracking health parameters like Body Mass Idex (BMI), Expected Date of Delivery (EDD), Blood Pressure (BM) and give relevant information.
+This is medical health tracker app for tracking health parameters like Body Mass Idex (BMI), Adverse Drug reactions and Drug uses.
 
 ## Live Demo
 

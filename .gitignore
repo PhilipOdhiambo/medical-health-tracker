@@ -15,6 +15,10 @@ build
 
 # Unknown
 /captures
+.project
+.settings/
+.classpath
+
 
 
 

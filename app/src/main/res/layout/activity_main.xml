@@ -32,9 +32,4 @@
         android:backgroundTint="@color/category_edd"
         android:text="My Medicine (Uses and Warning)" />
 
-    <TextView
-        android:id="@+id/text_view_drug_detail"
-        style="@style/CategoryStyle"
-        android:backgroundTint="@color/category_bmi"
-        android:text="Drug Detail" />
 </LinearLayout>

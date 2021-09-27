@@ -26,7 +26,6 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     @BindView(R.id.appBmi) TextView mBMI;
     @BindView(R.id.appEDD) TextView mEDD;
     @BindView(R.id.adverseEventTextView) TextView mAdverseEventTextView;
-    @BindView(R.id.text_view_drug_detail) TextView mDrugDetail;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -38,7 +37,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         mBMI.setOnClickListener(this);
         mEDD.setOnClickListener(this);
         mAdverseEventTextView.setOnClickListener(this);
-        mDrugDetail.setOnClickListener(this);
+
 
         mAuth = FirebaseAuth.getInstance();
         mAuthListener = new FirebaseAuth.AuthStateListener() {
@@ -89,10 +88,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             startActivity(intent);
         }
 
-        if (view == mDrugDetail) {
-            Intent intent = new Intent(MainActivity.this, DrugDetailActivity.class);
-            startActivity(intent);
-        }
+
     }
 
     @Override
